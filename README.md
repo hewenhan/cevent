@@ -5,7 +5,7 @@ EASY CUSTOM EVENT
 
 LIGHT EVENT MODULE ON JAVASCRIPT
 
-`version`: `v1.0.4`
+`version`: `v1.0.5`
 `author`: `Blind Holmes`
 
 ----
