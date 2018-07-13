@@ -1,6 +1,6 @@
 {
 	"name": "cevent",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "custom event",
 	"main": "cevent.js",
 	"dependencies": {},
@@ -11,6 +11,10 @@
 		"type": "git",
 		"url": "git+https://github.com/hewenhan/cevent.git"
 	},
+	"keywords": [
+		"event",
+		"cevent"
+	],
 	"author": "Blind_Holmes <hewenhan@gmail.com> (http://blog.hewenhan.me)",
 	"license": "ISC",
 	"bugs": {

@@ -35,6 +35,8 @@ const createCallbackMap = (name, cb) => {
 	}
 	createdIdList.push(id);
 	ePool[name].cbList[id] = cb;
+
+	console.log(id);
 	return id;
 };
 
@@ -47,26 +49,50 @@ module.exports = {
 			ePool[name].cbList[i](ePool[name].data);
 			if (ePool[name].onceTagArr.indexOf(i) !== -1) {
 				delete ePool[name].cbList[i];
+				createdIdList.splice(createdIdList.indexOf(i),1);
 				ePool[name].onceTagArr.splice(i, 1);
 			}
 		}
 		ePool[name].triggered = true;
+		return true;
 	},
 	// listen a event by name, when event emiting, trigger this listener callback everytime
 	on: (name, cb) => {
 		tryInitIdArray(name);
-		var eventId = createCallbackMap(name, cb);
+		var result = {
+			name: name,
+			eventId: createCallbackMap(name, cb)
+		};
+		return result;
 	},
 	// be different with method "on"
 	// if the event name has emited, then catch last event data and trigger this event
-	// this methon always trigger once, only once
+	// this method always trigger once, only once
 	once: (name, cb) => {
 		tryInitIdArray(name);
 		if (ePool[name].triggered) {
 			cb(ePool[name].data);
-			return;
+			return null;
 		}
-		var eventId = createCallbackMap(name, cb);
-		ePool[name].onceTagArr.push(eventId);
+
+		var result = {
+			name: name,
+			eventId: createCallbackMap(name, cb)
+		};
+
+		ePool[name].onceTagArr.push(result.eventId);
+		return result;
+	},
+	// remove event listener object by eventObject
+	drop: (eventObject) => {
+		if (typeof eventObject !== 'object') {
+			return false;
+		}
+		createdIdList.splice(createdIdList.indexOf(eventObject.eventId),1);
+		delete ePool[eventObject.name].cbList[eventObject.eventId];
+
+		console.log(ePool);
+		console.log(createdIdList);
+		return true;
 	}
 };

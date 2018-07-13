@@ -38,6 +38,34 @@ cevent.emit('test', {
 
 ## METHOS
 
-- cevent.on(eventName, callback);
-- cevent.once(eventName, callback);
-- cevent.emit(eventName, callback);
+- cevent.on(eventName, callback)
+	- eventName <string>
+	- callback <Function>
+		- data <data>
+
+Create a event listener by eventName, event callback when event triggered every time.
+Returns a eventObject.
+
+- cevent.once(eventName, callback)
+	- eventName <string>
+	- callback <Function>
+		- data <data>
+
+Create a event listener by eventName, event callback when event first trigger.
+Be different with method "on".
+If the event name has emited, then catch last event data and trigger this event.
+This method always trigger once, only once.
+Returns a eventObject.
+
+- cevent.emit(eventName, data)
+	- eventName <string>
+	- data <data>
+
+Trigger a event in time and emit data.
+Returns <bollean>.
+
+- cevent.drop(eventObject)
+	- eventObject <eventObject>
+
+Remove event listener object by eventObject.
+Returns <bollean>.
