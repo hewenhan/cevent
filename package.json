@@ -1,6 +1,6 @@
 {
 	"name": "cevent",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "custom event",
 	"main": "cevent.js",
 	"dependencies": {},
