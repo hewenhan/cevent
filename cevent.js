@@ -11,7 +11,7 @@ const randomStr = (length) => {
 		str += charList.substr(2, charList.length - 2);
 	}
 	return str;
-};;
+};
 
 const ePool = {};
 const createdIdList = [];
