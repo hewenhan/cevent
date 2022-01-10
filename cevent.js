@@ -1,14 +1,17 @@
 const randomStr = (length) => {
-	var length = parseInt(length);
-	var str = '';
-	if (length / 25 >= 1) {
-		for (var i = 0; i < Math.floor(length / 25); i++) {
-			str += Math.random().toString(36).substr(2, 25);
+	var length    = parseInt(length);
+	var str       = '';
+	while (true) {
+		var lessNum = str.length - length;
+		if (lessNum >= 0) {
+			str = str.substr(0, length);
+			break;
 		}
+		var charList = Math.random().toString(36);
+		str += charList.substr(2, charList.length - 2);
 	}
-	str += Math.random().toString(36).substr(2, length % 25);
 	return str;
-};
+};;
 
 const ePool = {};
 const createdIdList = [];
@@ -36,7 +39,6 @@ const createCallbackMap = (name, cb) => {
 	createdIdList.push(id);
 	ePool[name].cbList[id] = cb;
 
-	console.log(id);
 	return id;
 };
 
@@ -94,5 +96,6 @@ module.exports = {
 		console.log(ePool);
 		console.log(createdIdList);
 		return true;
-	}
+	},
+	_ePool: ePool
 };
